@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="assets/img/profile.jpg" fetchpriority="high" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -85,9 +86,9 @@
         </div>
         <div class="photo" id="photo">
           <div class="photo__glow"></div>
-          <img class="photo__img" src="assets/img/profile.jpg" alt="Portrait of Syed Jaffer Sha" />
-          <!-- Cartoon avatar poses (assets/img/avatar/*.png) are loaded by script.js if present -->
-          <div class="avatar" id="avatar" aria-hidden="true"></div>
+          <img class="photo__img" src="assets/img/profile.jpg" alt="Portrait of Syed Jaffer Sha" width="900" height="1200" fetchpriority="high" decoding="async" />
+          <!-- Cartoon avatar poses: add assets/img/avatar/*.png, then set data-poses="on" -->
+          <div class="avatar" id="avatar" data-poses="off" aria-hidden="true"></div>
           <div class="photo__glare" id="glare"></div>
           <div class="photo__frame"></div>
           <div class="photo__tag">
@@ -119,7 +120,7 @@
       </div>
       <div class="about__grid">
         <div class="about__img reveal-left tilt">
-          <img src="assets/img/working.jpg" alt="Syed Jaffer Sha working on a laptop" loading="lazy" />
+          <img src="assets/img/working.jpg" alt="Syed Jaffer Sha working on a laptop" width="1000" height="1333" loading="lazy" decoding="async" />
           <div class="about__img-label">// building data pipelines &amp; apps</div>
         </div>
         <div class="about__text">
@@ -397,6 +398,6 @@
     </span>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

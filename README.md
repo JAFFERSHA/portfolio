@@ -30,7 +30,7 @@ Put 5 images of the same cartoon avatar in `assets/img/avatar/`. Each should be 
 | `up.png` | looking up |
 | `down.png` | looking down |
 
-When all 5 exist, the hero swaps poses so the avatar follows the cursor. On phones it glances around by itself.
+Then set `data-poses="on"` on the `#avatar` element in `index.html`. The hero then swaps poses so the avatar follows the cursor. On phones it glances around by itself.
 If any file is missing, the normal photo is shown.
 
 ## Run locally

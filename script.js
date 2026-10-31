@@ -181,9 +181,10 @@
         ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(x, y); ctx.stroke();
       }
     }
-    if (!reduceMotion) requestAnimationFrame(draw);
+    if (!reduceMotion && !document.hidden) requestAnimationFrame(draw);
   }
   requestAnimationFrame(draw);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && !reduceMotion) requestAnimationFrame(draw); });
 
   /* ---------- Custom cursor + spotlight ---------- */
   const dot = $("#cursorDot"), ring = $("#cursorRing"), spot = $("#spotlight");
@@ -225,12 +226,13 @@
     bottom: "Scroll to see my work",
     near: "Hi, I'm Jaffer — nice to meet you",
   };
-  /* Cartoon avatar poses: drop these files into assets/img/avatar/ and they're used
-     automatically. Missing files → the normal photo is shown instead. */
+  /* Cartoon avatar poses: put the files in assets/img/avatar/ and set data-poses="on"
+     on #avatar in index.html. If any file fails to load, the normal photo stays. */
   const POSES = { near: "center", left: "left", right: "right", top: "up", bottom: "down" };
   const avatar = $("#avatar"), poseImgs = {};
   let avatarReady = false;
-  Promise.all(
+  (avatar.dataset.poses === "on" ? Promise.resolve() : Promise.reject())
+    .then(() => Promise.all(
     [...new Set(Object.values(POSES))].map(
       (name) =>
         new Promise((ok, fail) => {
@@ -241,7 +243,7 @@
           img.src = `assets/img/avatar/${name}.png`;
         })
     )
-  )
+  ))
     .then(() => {
       Object.values(poseImgs).forEach((img) => avatar.appendChild(img));
       visual.classList.add("has-avatar");
