@@ -8,7 +8,7 @@
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   // Edit these to change the typing roles in the hero
-  const ROLES = ["Software Engineer", "Full Stack Developer", "Backend Specialist", "Problem Solver"];
+  const ROLES = ["Full Stack Developer", "ETL Engineer", "Flutter App Developer", ".NET Developer", "Healthcare Data (FHIR)"];
 
   $("#year").textContent = new Date().getFullYear();
 
@@ -121,6 +121,16 @@
   }
   addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  /* ---------- Contact form → opens the visitor's email app ---------- */
+  $("#contactForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const subject = encodeURIComponent(`Portfolio enquiry from ${f.get("name")}`);
+    const body = encodeURIComponent(`${f.get("message")}\n\n— ${f.get("name")} (${f.get("email")})`);
+    location.href = `mailto:sjsasyed@gmail.com?subject=${subject}&body=${body}`;
+    $("#formNote").textContent = "Opening your email app… or write to sjsasyed@gmail.com directly.";
+  });
 
   /* ---------- Mobile menu ---------- */
   $("#burger").addEventListener("click", () => nav.classList.toggle("open"));
