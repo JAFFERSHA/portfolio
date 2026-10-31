@@ -1,0 +1,63 @@
+name: Deploy to Vercel
+
+# Production deploy on every push to main, preview deploy for pull requests.
+# Needs 3 repository secrets (Settings → Secrets and variables → Actions):
+#   VERCEL_TOKEN       – from https://vercel.com/account/tokens
+#   VERCEL_ORG_ID      – "orgId"     from .vercel/project.json (run `vercel link` once)
+#   VERCEL_PROJECT_ID  – "projectId" from .vercel/project.json
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: vercel-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - name: Check Vercel secrets
+        id: secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::warning::Vercel secrets are not set yet — skipping deploy."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.secrets.outputs.ready == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.secrets.outputs.ready == 'true'
+        with:
+          node-version: 20
+
+      - name: Install Vercel CLI
+        if: steps.secrets.outputs.ready == 'true'
+        run: npm install --global vercel@latest
+
+      - name: Deploy (production)
+        if: steps.secrets.outputs.ready == 'true' && github.event_name != 'pull_request'
+        run: |
+          vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+          vercel build --prod --token="$VERCEL_TOKEN"
+          url=$(vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN")
+          echo "### 🚀 Deployed to production: $url" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Deploy (preview)
+        if: steps.secrets.outputs.ready == 'true' && github.event_name == 'pull_request'
+        run: |
+          vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
+          vercel build --token="$VERCEL_TOKEN"
+          url=$(vercel deploy --prebuilt --token="$VERCEL_TOKEN")
+          echo "### 🔍 Preview: $url" >> "$GITHUB_STEP_SUMMARY"

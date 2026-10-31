@@ -157,7 +157,7 @@ ul { list-style: none; }
 .hero__hi { font-family: "Caveat", cursive; font-size: 2rem; color: var(--gold); line-height: 1; margin-bottom: -1rem; }
 .hero__name {
   font-family: var(--display); font-weight: 400; line-height: .9; letter-spacing: .01em;
-  font-size: clamp(4rem, 11vw, 9.5rem);
+  font-size: clamp(3.6rem, 9vw, 8rem);
   background: linear-gradient(180deg, #fff 30%, #9c9aa8); -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .hero__name .char, .section__title .char, .contact__title .char { -webkit-text-fill-color: currentColor; }
@@ -330,6 +330,13 @@ ul { list-style: none; }
 
 /* Skills */
 .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.skill-group { transition: border-color .4s, transform .4s var(--ease); }
+.skill-group:hover { border-color: rgba(245, 197, 66, .4); transform: translateY(-6px); }
+.skill-group .chips li { font-size: .72rem; }
+.certs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.ticks { display: flex; flex-direction: column; gap: .7rem; color: var(--muted); }
+.ticks li { padding-left: 1.8rem; position: relative; }
+.ticks li::before { content: "✓"; position: absolute; left: 0; top: .05rem; width: 1.2rem; height: 1.2rem; border-radius: 50%; display: grid; place-items: center; font-size: .7rem; color: #111; background: var(--grad); }
 .skill-group { padding: 2rem; border: 1px solid var(--line); border-radius: 22px; background: var(--card); }
 .skill-group h3 { font-family: var(--display); font-weight: 400; font-size: 2rem; letter-spacing: .03em; margin-bottom: 1.3rem; color: var(--gold); }
 .bar { margin-bottom: 1.2rem; }
@@ -338,12 +345,39 @@ ul { list-style: none; }
 .bar i { display: block; height: 4px; border-radius: 4px; background: var(--line); position: relative; overflow: hidden; }
 .bar i::after { content: ""; position: absolute; inset: 0; width: var(--w, 0%); background: var(--grad); border-radius: inherit; transition: width 1.6s var(--ease); }
 
+/* Info cards */
+.info-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.info { display: flex; flex-direction: column; gap: .2rem; padding: 1.2rem 1.4rem; border: 1px solid var(--line); border-radius: 18px; background: var(--card); text-align: left; }
+.info__label { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.info b { color: var(--text); font-weight: 600; }
+.info small { color: var(--muted); }
+.info a:hover b { color: var(--gold); }
+.info .socials { margin-top: .3rem; }
+
+/* Project extras */
+.card--wide { grid-column: 1 / -1; }
+.status { margin-left: auto; margin-right: 1rem; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; padding: .3rem .7rem; border-radius: 100px; border: 1px solid var(--line); color: var(--muted); }
+.status--live { color: #7dffa8; border-color: rgba(125, 255, 168, .35); background: rgba(125, 255, 168, .06); }
+.card__points { display: flex; flex-direction: column; gap: .35rem; color: var(--muted); font-size: .92rem; }
+.card__points li { padding-left: 1.3rem; position: relative; }
+.card__points li::before { content: "▹"; position: absolute; left: 0; color: var(--gold); }
+
 /* Contact */
 .contact { text-align: center; padding-bottom: 8rem; display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
 .contact__eyebrow { color: var(--gold); letter-spacing: .25em; text-transform: uppercase; font-size: .8rem; font-weight: 600; }
 .contact__title { font-family: var(--display); font-weight: 400; font-size: clamp(3.5rem, 12vw, 10rem); line-height: .88; }
 .contact__mail { font-size: clamp(1.1rem, 3vw, 2rem); border-bottom: 1px solid var(--gold); padding-bottom: .2rem; transition: color .3s; }
 .contact__mail:hover { color: var(--gold); }
+.contact__grid { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; margin-top: 2rem; text-align: left; }
+.contact__info { display: grid; gap: 1rem; }
+.form { display: flex; flex-direction: column; gap: 1rem; padding: 2rem; border: 1px solid var(--line); border-radius: 22px; background: var(--card); }
+.form label { display: flex; flex-direction: column; gap: .4rem; font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.form input, .form textarea { font: inherit; font-size: .95rem; letter-spacing: normal; text-transform: none; color: var(--text); background: rgba(255, 255, 255, .03); border: 1px solid var(--line); border-radius: 12px; padding: .85rem 1rem; outline: none; resize: vertical; transition: border-color .3s, box-shadow .3s; }
+.form input:focus, .form textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(245, 197, 66, .12); }
+.form .btn { align-self: flex-start; border: 0; cursor: pointer; }
+.form__note { font-size: .85rem; color: var(--gold); min-height: 1.2em; }
+.footer__links { display: flex; gap: 1.5rem; }
+.footer__links a:hover { color: var(--gold); }
 
 .footer {
   width: min(1200px, calc(100% - 3rem)); margin: 0 auto; padding: 2rem 0 2.5rem; border-top: 1px solid var(--line);
@@ -377,7 +411,7 @@ ul { list-style: none; }
   .orbit__item, .orbit__item { transform: rotate(calc(var(--i) * 60deg)) translateY(calc(min(420px, 92vw) / -2)) rotate(calc(var(--i) * -60deg)); animation: none; }
   .photo { width: min(300px, 70vw); }
   .about__grid { grid-template-columns: 1fr; }
-  .projects, .skills { grid-template-columns: 1fr; }
+  .projects, .skills, .certs, .contact__grid { grid-template-columns: 1fr; }
   .scroll-hint { display: none; }
 }
 @media (max-width: 760px) {
@@ -392,7 +426,7 @@ ul { list-style: none; }
   .nav.open .nav__burger span:first-child { transform: translateY(4px) rotate(45deg); }
   .nav.open .nav__burger span:last-child { transform: translateY(-4px) rotate(-45deg); }
   .nav .btn--small { margin-left: auto; }
-  .stats { grid-template-columns: 1fr; }
+  .stats, .info-cards { grid-template-columns: 1fr; }
   .hud--1 { right: -2%; } .hud--2 { left: -2%; }
   .bubble { left: 0; top: 0; font-size: .75rem; }
   .timeline { padding-left: 2.2rem; }
