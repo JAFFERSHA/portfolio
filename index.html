@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jaffer Sha — Software Engineer</title>
+  <meta name="description" content="Portfolio of Jaffer Sha — Software Engineer & Full Stack Developer." />
+  <meta property="og:title" content="Jaffer Sha — Software Engineer" />
+  <meta property="og:image" content="assets/img/profile.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ================= PRELOADER ================= -->
+  <div class="loader" id="loader">
+    <div class="loader__name">JAFFER<span>.</span></div>
+    <div class="loader__bar"><span id="loaderBar"></span></div>
+    <div class="loader__count" id="loaderCount">0%</div>
+  </div>
+
+  <!-- Custom cursor + spotlight -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="spotlight" id="spotlight"></div>
+  <div class="progress" id="progress"></div>
+
+  <canvas id="stars"></canvas>
+  <div class="noise"></div>
+
+  <!-- ================= NAV ================= -->
+  <header class="nav" id="nav">
+    <a href="#home" class="nav__logo">JS<span>.</span></a>
+    <nav class="nav__links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="assets/resume.pdf" class="btn btn--small magnetic" download>Resume ↓</a>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home">
+      <div class="hero__text">
+        <div class="badge reveal-up"><span class="pulse"></span> OPEN TO WORK</div>
+        <p class="hero__hi reveal-up">Hi, I'm</p>
+        <h1 class="hero__name" data-split>JAFFER SHA</h1>
+        <p class="hero__role reveal-up">
+          <span class="typed" id="typed"></span><span class="caret">|</span>
+        </p>
+        <p class="hero__lead reveal-up">
+          I build fast, scalable and beautifully crafted software — from clean APIs
+          to pixel-perfect interfaces that people love to use.
+        </p>
+        <ul class="chips reveal-up">
+          <li>Java</li><li>Spring Boot</li><li>React</li><li>Node.js</li><li>Python</li><li>AWS</li><li>SQL</li>
+        </ul>
+        <div class="hero__cta reveal-up">
+          <a href="#projects" class="btn btn--primary magnetic"><span>View Projects</span></a>
+          <a href="#contact" class="btn btn--ghost magnetic"><span>Let's Talk</span></a>
+        </div>
+        <div class="socials reveal-up">
+          <a href="https://github.com/jaffersha" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <!-- Interactive photo: tilts & glows toward the cursor -->
+      <div class="hero__visual reveal-up" id="heroVisual">
+        <div class="bubble" id="bubble">Hey there 👋</div>
+        <div class="orbit">
+          <span class="orbit__item" style="--i:0">⚛️</span>
+          <span class="orbit__item" style="--i:1">☕</span>
+          <span class="orbit__item" style="--i:2">🐍</span>
+          <span class="orbit__item" style="--i:3">☁️</span>
+          <span class="orbit__item" style="--i:4">🐳</span>
+          <span class="orbit__item" style="--i:5">⚡</span>
+        </div>
+        <div class="photo" id="photo">
+          <div class="photo__glow"></div>
+          <img src="assets/img/profile.jpg" alt="Portrait of Jaffer Sha" />
+          <div class="photo__glare" id="glare"></div>
+          <div class="photo__frame"></div>
+          <div class="photo__tag">
+            <span class="dot"></span> Available for full-time roles
+          </div>
+        </div>
+        <div class="hud hud--1"><b>3+</b><small>Years building</small></div>
+        <div class="hud hud--2"><code>&lt;/&gt;</code><small>Clean code</small></div>
+      </div>
+
+      <a href="#about" class="scroll-hint"><span></span>Scroll</a>
+    </section>
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="marquee">
+      <div class="marquee__track">
+        <span>JAVA</span><i>✦</i><span>SPRING BOOT</span><i>✦</i><span>REACT</span><i>✦</i><span>NODE.JS</span><i>✦</i>
+        <span>MICROSERVICES</span><i>✦</i><span>AWS</span><i>✦</i><span>DOCKER</span><i>✦</i><span>SQL</span><i>✦</i>
+        <span>JAVA</span><i>✦</i><span>SPRING BOOT</span><i>✦</i><span>REACT</span><i>✦</i><span>NODE.JS</span><i>✦</i>
+        <span>MICROSERVICES</span><i>✦</i><span>AWS</span><i>✦</i><span>DOCKER</span><i>✦</i><span>SQL</span><i>✦</i>
+      </div>
+    </div>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section about" id="about">
+      <div class="section__head">
+        <span class="section__num">01</span>
+        <h2 class="section__title" data-split>ABOUT ME</h2>
+      </div>
+      <div class="about__grid">
+        <div class="about__img reveal-left tilt">
+          <img src="assets/img/working.jpg" alt="Jaffer Sha working on a laptop" loading="lazy" />
+          <div class="about__img-label">// deep in thought, shipping code</div>
+        </div>
+        <div class="about__text">
+          <p class="big reveal-up">
+            A <em>software engineer</em> who loves turning complex problems into
+            <em>simple, elegant</em> solutions.
+          </p>
+          <p class="reveal-up">
+            I enjoy working across the stack — designing reliable backend services,
+            building responsive front-ends and automating everything in between.
+            I care about readable code, measurable impact and teams that ship.
+          </p>
+          <p class="reveal-up">
+            When I'm not coding, I'm exploring new tech, learning system design
+            and looking for the next challenge.
+          </p>
+          <div class="stats">
+            <div class="stat reveal-up"><b data-count="3">0</b><span>Years experience</span></div>
+            <div class="stat reveal-up"><b data-count="15">0</b><span>Projects delivered</span></div>
+            <div class="stat reveal-up"><b data-count="10">0</b><span>Technologies</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="section" id="experience">
+      <div class="section__head">
+        <span class="section__num">02</span>
+        <h2 class="section__title" data-split>EXPERIENCE</h2>
+      </div>
+      <div class="timeline" id="timeline">
+        <div class="timeline__line"><span id="timelineFill"></span></div>
+
+        <article class="job reveal-up">
+          <div class="job__dot"></div>
+          <div class="job__date">2023 — Present</div>
+          <h3>Software Engineer</h3>
+          <h4>Company Name · City</h4>
+          <ul>
+            <li>Designed and built REST microservices handling thousands of requests per minute.</li>
+            <li>Improved API response time by ~40% through query optimisation and caching.</li>
+            <li>Set up CI/CD pipelines and containerised deployments with Docker.</li>
+          </ul>
+          <div class="job__tags"><span>Java</span><span>Spring Boot</span><span>AWS</span></div>
+        </article>
+
+        <article class="job reveal-up">
+          <div class="job__dot"></div>
+          <div class="job__date">2021 — 2023</div>
+          <h3>Associate Software Engineer</h3>
+          <h4>Company Name · City</h4>
+          <ul>
+            <li>Developed responsive React dashboards used by internal teams daily.</li>
+            <li>Wrote unit and integration tests, raising coverage to 80%+.</li>
+            <li>Collaborated in an Agile team, owning features end-to-end.</li>
+          </ul>
+          <div class="job__tags"><span>React</span><span>Node.js</span><span>SQL</span></div>
+        </article>
+
+        <article class="job reveal-up">
+          <div class="job__dot"></div>
+          <div class="job__date">2017 — 2021</div>
+          <h3>B.E. / B.Tech — Computer Science</h3>
+          <h4>University Name</h4>
+          <ul>
+            <li>Graduated with distinction; final-year project on scalable web systems.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section class="section" id="projects">
+      <div class="section__head">
+        <span class="section__num">03</span>
+        <h2 class="section__title" data-split>SELECTED WORK</h2>
+      </div>
+      <div class="projects">
+        <article class="card tilt reveal-up">
+          <div class="card__shine"></div>
+          <div class="card__top"><span class="card__idx">01</span><span class="card__icon">🛒</span></div>
+          <h3>E‑Commerce Platform</h3>
+          <p>Full-stack store with cart, payments, admin panel and order tracking built on a microservice backend.</p>
+          <div class="job__tags"><span>Spring Boot</span><span>React</span><span>MySQL</span></div>
+          <div class="card__links"><a href="https://github.com/jaffersha" target="_blank" rel="noopener">Code ↗</a><a href="#" target="_blank" rel="noopener">Live ↗</a></div>
+        </article>
+        <article class="card tilt reveal-up">
+          <div class="card__shine"></div>
+          <div class="card__top"><span class="card__idx">02</span><span class="card__icon">📊</span></div>
+          <h3>Analytics Dashboard</h3>
+          <p>Real-time dashboard visualising business KPIs with live charts, filters and role-based access.</p>
+          <div class="job__tags"><span>Node.js</span><span>WebSockets</span><span>Chart.js</span></div>
+          <div class="card__links"><a href="https://github.com/jaffersha" target="_blank" rel="noopener">Code ↗</a><a href="#" target="_blank" rel="noopener">Live ↗</a></div>
+        </article>
+        <article class="card tilt reveal-up">
+          <div class="card__shine"></div>
+          <div class="card__top"><span class="card__idx">03</span><span class="card__icon">🤖</span></div>
+          <h3>AI Resume Assistant</h3>
+          <p>Tool that analyses job descriptions and suggests tailored resume improvements using an LLM API.</p>
+          <div class="job__tags"><span>Python</span><span>FastAPI</span><span>LLM</span></div>
+          <div class="card__links"><a href="https://github.com/jaffersha" target="_blank" rel="noopener">Code ↗</a><a href="#" target="_blank" rel="noopener">Live ↗</a></div>
+        </article>
+        <article class="card tilt reveal-up">
+          <div class="card__shine"></div>
+          <div class="card__top"><span class="card__idx">04</span><span class="card__icon">☁️</span></div>
+          <h3>Cloud CI/CD Pipeline</h3>
+          <p>Automated build-test-deploy pipeline with Docker images and zero-downtime deployments on AWS.</p>
+          <div class="job__tags"><span>Docker</span><span>Jenkins</span><span>AWS</span></div>
+          <div class="card__links"><a href="https://github.com/jaffersha" target="_blank" rel="noopener">Code ↗</a><a href="#" target="_blank" rel="noopener">Live ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section class="section" id="skills">
+      <div class="section__head">
+        <span class="section__num">04</span>
+        <h2 class="section__title" data-split>TOOLKIT</h2>
+      </div>
+      <div class="skills">
+        <div class="skill-group reveal-up">
+          <h3>Backend</h3>
+          <div class="bar" data-level="90"><span>Java / Spring Boot</span><i></i></div>
+          <div class="bar" data-level="80"><span>Node.js / Express</span><i></i></div>
+          <div class="bar" data-level="75"><span>Python</span><i></i></div>
+        </div>
+        <div class="skill-group reveal-up">
+          <h3>Frontend</h3>
+          <div class="bar" data-level="85"><span>HTML / CSS / JavaScript</span><i></i></div>
+          <div class="bar" data-level="80"><span>React</span><i></i></div>
+          <div class="bar" data-level="70"><span>TypeScript</span><i></i></div>
+        </div>
+        <div class="skill-group reveal-up">
+          <h3>Cloud & Tools</h3>
+          <div class="bar" data-level="80"><span>SQL / MySQL / PostgreSQL</span><i></i></div>
+          <div class="bar" data-level="75"><span>Docker / Jenkins / Git</span><i></i></div>
+          <div class="bar" data-level="70"><span>AWS</span><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section contact" id="contact">
+      <p class="contact__eyebrow reveal-up">Have a role or project in mind?</p>
+      <h2 class="contact__title" data-split>LET'S WORK TOGETHER</h2>
+      <a href="mailto:you@example.com" class="contact__mail magnetic reveal-up">you@example.com</a>
+      <div class="hero__cta reveal-up" style="justify-content:center">
+        <a href="assets/resume.pdf" class="btn btn--primary magnetic" download><span>Download Resume</span></a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="btn btn--ghost magnetic"><span>LinkedIn</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© <span id="year"></span> Jaffer Sha</span>
+    <span>Designed & built with ♥ and a lot of ☕</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
