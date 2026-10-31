@@ -29,7 +29,8 @@
   /* ---------- Preloader ---------- */
   document.body.classList.add("loading");
   const bar = $("#loaderBar"), count = $("#loaderCount");
-  let p = 0;
+  let p = 0, seen = false;
+  try { seen = sessionStorage.getItem("seen") === "1"; sessionStorage.setItem("seen", "1"); } catch (_) {}
   const tick = setInterval(() => {
     p = Math.min(100, p + Math.random() * 18 + 6);
     bar.style.width = p + "%";
@@ -40,9 +41,9 @@
         $("#loader").classList.add("done");
         document.body.classList.remove("loading");
         startHero();
-      }, 250);
+      }, seen ? 0 : 150);
     }
-  }, reduceMotion ? 10 : 90);
+  }, reduceMotion || seen ? 5 : 35);
 
   function startHero() {
     $$(".hero [data-split], .hero .reveal-up").forEach((el, i) => {
@@ -180,9 +181,10 @@
         ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(x, y); ctx.stroke();
       }
     }
-    if (!reduceMotion) requestAnimationFrame(draw);
+    if (!reduceMotion && !document.hidden) requestAnimationFrame(draw);
   }
   requestAnimationFrame(draw);
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && !reduceMotion) requestAnimationFrame(draw); });
 
   /* ---------- Custom cursor + spotlight ---------- */
   const dot = $("#cursorDot"), ring = $("#cursorRing"), spot = $("#spotlight");
@@ -198,7 +200,7 @@
     ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
     requestAnimationFrame(ringLoop);
   })();
-  $$("a, button, .card, .chips li").forEach((el) => {
+  $$("a, button, .card, .chips li, input, textarea").forEach((el) => {
     el.addEventListener("mouseenter", () => ring.classList.add("is-hover"));
     el.addEventListener("mouseleave", () => ring.classList.remove("is-hover"));
   });
@@ -218,16 +220,53 @@
   /* ---------- Hero photo: follows the cursor anywhere on screen ---------- */
   const photo = $("#photo"), glare = $("#glare"), bubble = $("#bubble"), visual = $("#heroVisual");
   const lines = {
-    left: "Looking at my work? 👀",
-    right: "Over here! 👋",
-    top: "Up there? Let's aim higher 🚀",
-    bottom: "Scroll down — it gets better ⬇️",
-    near: "Nice to meet you! 🤝",
+    left: "Explore my experience",
+    right: "Let's build something great",
+    top: "Open to new opportunities",
+    bottom: "Scroll to see my work",
+    near: "Hi, I'm Jaffer — nice to meet you",
   };
+  /* Cartoon avatar poses: put the files in assets/img/avatar/ and set data-poses="on"
+     on #avatar in index.html. If any file fails to load, the normal photo stays. */
+  const POSES = { near: "center", left: "left", right: "right", top: "up", bottom: "down" };
+  const avatar = $("#avatar"), poseImgs = {};
+  let avatarReady = false;
+  (avatar.dataset.poses === "on" ? Promise.resolve() : Promise.reject())
+    .then(() => Promise.all(
+    [...new Set(Object.values(POSES))].map(
+      (name) =>
+        new Promise((ok, fail) => {
+          const img = new Image();
+          img.alt = "";
+          img.onload = () => ok((poseImgs[name] = img));
+          img.onerror = fail;
+          img.src = `assets/img/avatar/${name}.png`;
+        })
+    )
+  ))
+    .then(() => {
+      Object.values(poseImgs).forEach((img) => avatar.appendChild(img));
+      visual.classList.add("has-avatar");
+      avatarReady = true;
+      setPose("near");
+      // touch devices have no cursor: let the avatar glance around on its own
+      if (!finePointer) {
+        const keys = Object.keys(lines);
+        setInterval(() => setLine(keys[Math.floor(Math.random() * keys.length)]), 2600);
+      }
+    })
+    .catch(() => {});
+  function setPose(key) {
+    if (!avatarReady) return;
+    const name = POSES[key];
+    Object.entries(poseImgs).forEach(([n, img]) => img.classList.toggle("on", n === name));
+  }
+
   let lastLine = "";
   function setLine(key) {
     if (key === lastLine) return;
     lastLine = key;
+    setPose(key);
     bubble.textContent = lines[key];
     bubble.classList.remove("pop"); void bubble.offsetWidth; bubble.classList.add("pop");
     setTimeout(() => bubble.classList.remove("pop"), 300);
