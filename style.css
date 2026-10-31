@@ -31,9 +31,6 @@ img { display: block; max-width: 100%; }
 ul { list-style: none; }
 ::selection { background: var(--gold); color: #000; }
 
-@media (hover: hover) and (pointer: fine) {
-  body, a, button { cursor: none; }
-}
 
 /* =========================================================
    Background layers
@@ -59,7 +56,7 @@ ul { list-style: none; }
   position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
   border-radius: 50%; transform: translate(-50%, -50%);
 }
-.cursor-dot { width: 6px; height: 6px; background: var(--gold); }
+.cursor-dot { display: none; }
 .cursor-ring {
   width: 38px; height: 38px; border: 1px solid rgba(245, 197, 66, .6);
   transition: width .3s var(--ease), height .3s var(--ease), background .3s, border-color .3s;
@@ -172,6 +169,15 @@ ul { list-style: none; }
 .socials a { transition: color .3s; }
 .socials a:hover { color: var(--gold); }
 
+/* Cursor-reactive avatar (pose swapping) */
+.avatar { position: absolute; inset: 0; z-index: 1; display: none; border-radius: inherit; overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 100%, rgba(245, 197, 66, .28), transparent 60%), linear-gradient(180deg, #1a1a26, #0d0d14); }
+.avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  opacity: 0; transform: scale(1.02); transition: opacity .22s ease, transform .5s var(--ease); }
+.avatar img.on { opacity: 1; transform: none; }
+.has-avatar .avatar { display: block; }
+.has-avatar .photo__img { visibility: hidden; }
+
 /* Interactive photo */
 .hero__visual { position: relative; perspective: 1200px; display: grid; place-items: center; min-height: 560px; }
 .photo {
@@ -180,7 +186,7 @@ ul { list-style: none; }
   transition: transform .15s linear;
   will-change: transform;
 }
-.photo img {
+.photo__img {
   width: 100%; height: 100%; object-fit: cover; object-position: center 20%;
   border-radius: inherit; position: relative; z-index: 1;
   filter: saturate(1.05) contrast(1.05);
@@ -213,8 +219,8 @@ ul { list-style: none; }
 
 .orbit { position: absolute; width: min(520px, 95vw); aspect-ratio: 1; animation: spin 30s linear infinite; pointer-events: none; }
 .orbit__item {
-  position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; margin: -23px;
-  display: grid; place-items: center; font-size: 1.3rem; border-radius: 14px;
+  position: absolute; top: 50%; left: 50%; width: 58px; height: 34px; margin: -17px -29px;
+  display: grid; place-items: center; font-size: .62rem; font-weight: 700; letter-spacing: .06em; color: var(--gold); border-radius: 14px;
   background: rgba(20, 20, 28, .75); border: 1px solid var(--line); backdrop-filter: blur(6px);
   transform: rotate(calc(var(--i) * 60deg)) translateY(calc(min(520px, 95vw) / -2)) rotate(calc(var(--i) * -60deg));
 }
@@ -321,7 +327,7 @@ ul { list-style: none; }
 .card:hover .card__shine { opacity: 1; }
 .card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .card__idx { font-family: var(--display); font-size: 3rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .3); }
-.card__icon { font-size: 2rem; transform: translateZ(40px); transition: transform .5s var(--ease); }
+.card__icon { width: 44px; height: 44px; padding: 10px; border-radius: 12px; color: var(--gold); background: rgba(245, 197, 66, .08); border: 1px solid rgba(245, 197, 66, .2); display: grid; place-items: center; transform: translateZ(40px); transition: transform .5s var(--ease); }
 .card:hover .card__icon { transform: translateZ(40px) rotate(-10deg) scale(1.15); }
 .card h3 { font-size: 1.6rem; font-weight: 600; }
 .card p { color: var(--muted); flex: 1; }
@@ -356,6 +362,7 @@ ul { list-style: none; }
 
 /* Project extras */
 .card--wide { grid-column: 1 / -1; }
+.card__icon svg { width: 100%; height: 100%; }
 .status { margin-left: auto; margin-right: 1rem; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; padding: .3rem .7rem; border-radius: 100px; border: 1px solid var(--line); color: var(--muted); }
 .status--live { color: #7dffa8; border-color: rgba(125, 255, 168, .35); background: rgba(125, 255, 168, .06); }
 .card__points { display: flex; flex-direction: column; gap: .35rem; color: var(--muted); font-size: .92rem; }

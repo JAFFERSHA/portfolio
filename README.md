@@ -19,6 +19,20 @@ All content is in `index.html`, grouped by section (`#about`, `#experience`, `#p
 The typing job titles are in the `ROLES` array at the top of `script.js`.
 Photos are in `assets/img/`.
 
+## Cursor-reactive avatar (optional)
+Put 5 images of the same cartoon avatar in `assets/img/avatar/`. Each should be about 900×1200 (3:4) PNG:
+
+| File | Pose |
+|---|---|
+| `center.png` | looking at the viewer |
+| `left.png` | head and eyes turned to the viewer's left |
+| `right.png` | head and eyes turned to the viewer's right |
+| `up.png` | looking up |
+| `down.png` | looking down |
+
+When all 5 exist, the hero swaps poses so the avatar follows the cursor. On phones it glances around by itself.
+If any file is missing, the normal photo is shown.
+
 ## Run locally
 Open `index.html` in a browser, or run:
 ```bash

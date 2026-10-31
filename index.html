@@ -74,18 +74,20 @@
 
       <!-- Interactive photo: tilts & glows toward the cursor -->
       <div class="hero__visual reveal-up" id="heroVisual">
-        <div class="bubble" id="bubble">Hey there 👋</div>
+        <div class="bubble" id="bubble">Hi, I'm Jaffer</div>
         <div class="orbit">
-          <span class="orbit__item" style="--i:0" title="Flutter">📱</span>
-          <span class="orbit__item" style="--i:1" title=".NET">🟣</span>
-          <span class="orbit__item" style="--i:2" title="Python">🐍</span>
-          <span class="orbit__item" style="--i:3" title="Data / ETL">🗄️</span>
-          <span class="orbit__item" style="--i:4" title="Healthcare FHIR">🩺</span>
-          <span class="orbit__item" style="--i:5" title="AI">🤖</span>
+          <span class="orbit__item" style="--i:0">Flutter</span>
+          <span class="orbit__item" style="--i:1">.NET</span>
+          <span class="orbit__item" style="--i:2">Python</span>
+          <span class="orbit__item" style="--i:3">SQL</span>
+          <span class="orbit__item" style="--i:4">FHIR</span>
+          <span class="orbit__item" style="--i:5">Next.js</span>
         </div>
         <div class="photo" id="photo">
           <div class="photo__glow"></div>
-          <img src="assets/img/profile.jpg" alt="Portrait of Syed Jaffer Sha" />
+          <img class="photo__img" src="assets/img/profile.jpg" alt="Portrait of Syed Jaffer Sha" />
+          <!-- Cartoon avatar poses (assets/img/avatar/*.png) are loaded by script.js if present -->
+          <div class="avatar" id="avatar" aria-hidden="true"></div>
           <div class="photo__glare" id="glare"></div>
           <div class="photo__frame"></div>
           <div class="photo__tag">
@@ -145,12 +147,12 @@
           </div>
           <div class="info-cards">
             <div class="info reveal-up">
-              <span class="info__label">🎓 Education</span>
+              <span class="info__label">Education</span>
               <b>B.E. — Francis Xavier Engineering College</b>
               <small>2019 – 2023 · ECE Department · CGPA 85%</small>
             </div>
             <div class="info reveal-up">
-              <span class="info__label">📍 Location</span>
+              <span class="info__label">Location</span>
               <b>Tirunelveli, Tamil Nadu</b>
               <small>India</small>
             </div>
@@ -174,12 +176,10 @@
           <h3>Full Stack Developer &amp; ETL Engineer</h3>
           <h4>Thinkcove Technologies · Chennai</h4>
           <ul>
-            <li>Designed and deployed ETL pipelines for healthcare data integration using FHIR standards, processing large-scale datasets.</li>
-            <li>Developed cross-platform mobile applications with Flutter &amp; Dart — 5+ apps released on Google Play Store and Apple App Store.</li>
-            <li>Built full-stack solutions with Node.js, ASP.NET and Next.js; managed MongoDB and PostgreSQL databases at scale.</li>
-            <li>Led a team of 5 developers on a B2B web application for agricultural management using Next.js.</li>
-            <li>Developing AI-powered features for financial applications with machine learning models integrated into full-stack architecture.</li>
-            <li>Developed API integrations (ETL), database optimisation and production deployment across multiple environments.</li>
+            <li>Designed and deployed FHIR-compliant ETL pipelines for healthcare data integration, processing large-scale datasets.</li>
+            <li>Shipped 5+ cross-platform Flutter apps to Google Play Store and Apple App Store.</li>
+            <li>Led a team of 5 developers delivering a Next.js B2B platform for agricultural management.</li>
+            <li>Building AI-powered features for financial applications, integrating ML models into a Node.js / ASP.NET / Next.js stack.</li>
           </ul>
           <div class="job__tags"><span>Flutter</span><span>.NET</span><span>Next.js</span><span>Node.js</span><span>FHIR</span><span>PostgreSQL</span></div>
         </article>
@@ -230,7 +230,7 @@
       <div class="projects">
         <article class="card card--wide tilt reveal-up">
           <div class="card__shine"></div>
-          <div class="card__top"><span class="card__idx">01</span><span class="status status--live">● Ongoing</span><span class="card__icon">💹</span></div>
+          <div class="card__top"><span class="card__idx">01</span><span class="status status--live">● Ongoing</span><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/><path d="M16 7h4v4"/></svg></span></div>
           <h3>Finance AI</h3>
           <p>AI-powered features for financial applications with machine learning models and full-stack integration.</p>
           <ul class="card__points">
@@ -242,7 +242,7 @@
         </article>
         <article class="card tilt reveal-up">
           <div class="card__shine"></div>
-          <div class="card__top"><span class="card__idx">02</span><span class="status">Completed</span><span class="card__icon">🌾</span></div>
+          <div class="card__top"><span class="card__idx">02</span><span class="status">Completed</span><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V10"/><path d="M12 10c0-4 3-7 7-7 0 4-3 7-7 7z"/><path d="M12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></span></div>
           <h3>Next.js B2B Web Application</h3>
           <p>B2B web application for an agricultural stock and sales management system.</p>
           <ul class="card__points">
@@ -254,7 +254,7 @@
         </article>
         <article class="card tilt reveal-up">
           <div class="card__shine"></div>
-          <div class="card__top"><span class="card__idx">03</span><span class="status">08/2024 – 08/2025</span><span class="card__icon">🩺</span></div>
+          <div class="card__top"><span class="card__idx">03</span><span class="status">08/2024 – 08/2025</span><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span></div>
           <h3>ETL Healthcare Projects</h3>
           <p>Large-scale healthcare data processing and integration system with FHIR compliance.</p>
           <ul class="card__points">
@@ -267,7 +267,7 @@
         </article>
         <article class="card tilt reveal-up">
           <div class="card__shine"></div>
-          <div class="card__top"><span class="card__idx">04</span><span class="card__icon">✈️</span></div>
+          <div class="card__top"><span class="card__idx">04</span><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 13.5L3 11l1.5-1.5 8 1L17 6a2.1 2.1 0 013 3l-4.5 4.5 1 8L15 23l-2.5-7.5L9 19v3l-1.5-1-1-3-3-1-1-1.5h3z"/></svg></span></div>
           <h3>.NET Flight Booking System</h3>
           <p>Backend services for a flight booking system with payment integration.</p>
           <ul class="card__points">
@@ -279,7 +279,7 @@
         </article>
         <article class="card tilt reveal-up">
           <div class="card__shine"></div>
-          <div class="card__top"><span class="card__idx">05</span><span class="card__icon">📱</span></div>
+          <div class="card__top"><span class="card__idx">05</span><span class="card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span></div>
           <h3>Flutter Apps</h3>
           <p>Cross-platform mobile applications with robust backend services.</p>
           <ul class="card__points">
@@ -367,10 +367,10 @@
 
       <div class="contact__grid">
         <div class="contact__info">
-          <div class="info reveal-up"><span class="info__label">✉️ Email</span><a href="mailto:sjsasyed@gmail.com"><b>sjsasyed@gmail.com</b></a></div>
-          <div class="info reveal-up"><span class="info__label">📞 Phone</span><a href="tel:+919629556196"><b>+91-9629556196</b></a></div>
-          <div class="info reveal-up"><span class="info__label">📍 Location</span><b>Tirunelveli, Tamil Nadu, India</b></div>
-          <div class="info reveal-up"><span class="info__label">🔗 Connect</span>
+          <div class="info reveal-up"><span class="info__label">Email</span><a href="mailto:sjsasyed@gmail.com"><b>sjsasyed@gmail.com</b></a></div>
+          <div class="info reveal-up"><span class="info__label">Phone</span><a href="tel:+919629556196"><b>+91-9629556196</b></a></div>
+          <div class="info reveal-up"><span class="info__label">Location</span><b>Tirunelveli, Tamil Nadu, India</b></div>
+          <div class="info reveal-up"><span class="info__label">Connect</span>
             <div class="socials">
               <a href="https://www.linkedin.com/in/syed-jaffer-sha-s-a-a450ab1a9" target="_blank" rel="noopener">LinkedIn ↗</a>
               <a href="https://github.com/JAFFERSHA" target="_blank" rel="noopener">GitHub ↗</a>
