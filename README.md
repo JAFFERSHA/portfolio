@@ -2,6 +2,9 @@
 
 An animated personal portfolio site built with plain HTML, CSS and JavaScript. There are no frameworks and no build step.
 
+![Desktop preview](docs/preview-hero.png)
+![Mobile preview](docs/preview-mobile.png)
+
 ## Features
 - Preloader with a progress counter, and a hero name that animates in letter by letter
 - Starfield background that drifts with the cursor and draws lines to nearby stars
