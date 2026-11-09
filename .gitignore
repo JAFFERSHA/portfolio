@@ -1,3 +1,9 @@
 .vercel
 .env*
 !.env.example
+
+# Claude local reports/screenshots/dumps (never commit)
+/_dev/
+/reports/
+/screenshots/
+*.dump
